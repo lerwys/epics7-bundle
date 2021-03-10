@@ -1,0 +1,21 @@
+[submodule "epics-base"]
+	path = epics-base
+	url = https://github.com/mdavidsaver/epics-base
+[submodule "pvDataCPP"]
+	path = pvDataCPP
+	url = https://github.com/epics-base/pvDataCPP
+[submodule "pvAccessCPP"]
+	path = pvAccessCPP
+	url = https://github.com/epics-base/pvAccessCPP
+[submodule "pva2pva"]
+	path = pva2pva
+	url = https://github.com/mdavidsaver/pva2pva
+[submodule "normativeTypesCPP"]
+	path = normativeTypesCPP
+	url = https://github.com/epics-base/normativeTypesCPP
+[submodule "pvaClientCPP"]
+	path = pvaClientCPP
+	url = https://github.com/epics-base/pvaClientCPP
+[submodule "exampleCPP"]
+	path = exampleCPP
+	url = https://github.com/epics-base/exampleCPP

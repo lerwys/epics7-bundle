@@ -1,0 +1,8 @@
+THIS_DIR:=$(strip $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST)))))
+
+EPICS_BASE=$(THIS_DIR)/epics-base
+PVDATA=$(THIS_DIR)/pvDataCPP
+PVACCESS=$(THIS_DIR)/pvAccessCPP
+PVACLIENT=$(THIS_DIR)/pvaClientCPP
+NORMATIVETYPES=$(THIS_DIR)/normativeTypesCPP
+P2P=$(THIS_DIR)/pva2pva
