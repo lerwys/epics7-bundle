@@ -1,8 +1,17 @@
-DIRS := epics-base pvDataCPP pvAccessCPP pva2pva pvaClientCPP normativeTypesCPP exampleCPP
+DIRS := epics-base \
+	pvDataCPP \
+	pvAccessCPP \
+	pva2pva \
+	pvaClientCPP \
+	normativeTypesCPP \
+	exampleCPP
 
-.PHONY: $(DIRS)
+.PHONY: $(DIRS) all clean
 
 all: $(DIRS)
+
+clean:
+	$(foreach dir, $(DIRS), make -C $(dir) clean;)
 
 $(DIRS):
 	# Do git submodule init/update if not available
