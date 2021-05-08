@@ -1,4 +1,4 @@
-THIS_DIR:=$(strip $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST)))))
+THIS_DIR=@THIS_DIR@
 
 EPICS_BASE=$(THIS_DIR)/epics-base
 PVDATA=$(THIS_DIR)/pvDataCPP
