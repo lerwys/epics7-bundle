@@ -3,6 +3,7 @@ DIRS := epics-base \
 	pvAccessCPP \
 	pva2pva \
 	pvaClientCPP \
+	p4p \
 	normativeTypesCPP \
 	exampleCPP
 
@@ -18,7 +19,12 @@ RELEASE.local: RELEASE.local.in
 clean: RELEASE.local
 	$(foreach dir, $(DIRS), make -C $(dir) clean;)
 
-$(DIRS): RELEASE.local
+p4p_deps:
+	# Do git submodule init/update if not available
+	[ -z "$(ls -A ./p4p)" ] && git submodule update --init p4p
+	python3 -m pip install -r p4p/requirements-latest.txt --user
+
+$(DIRS): RELEASE.local p4p_deps
 	# Do git submodule init/update if not available
 	[ -z "$(ls -A ./$@)" ] && git submodule update --init $@
 	make -C $@ -j8
