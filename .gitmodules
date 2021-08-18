@@ -1,6 +1,6 @@
 [submodule "epics-base"]
 	path = epics-base
-	url = https://github.com/mdavidsaver/epics-base
+	url = https://github.com/lerwys/epics-base
 [submodule "pvDataCPP"]
 	path = pvDataCPP
 	url = https://github.com/epics-base/pvDataCPP
@@ -9,7 +9,7 @@
 	url = https://github.com/epics-base/pvAccessCPP
 [submodule "pva2pva"]
 	path = pva2pva
-	url = https://github.com/mdavidsaver/pva2pva
+	url = https://github.com/lerwys/pva2pva
 [submodule "normativeTypesCPP"]
 	path = normativeTypesCPP
 	url = https://github.com/epics-base/normativeTypesCPP
