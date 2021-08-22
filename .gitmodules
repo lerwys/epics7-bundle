@@ -16,9 +16,6 @@
 [submodule "pvaClientCPP"]
 	path = pvaClientCPP
 	url = https://github.com/epics-base/pvaClientCPP
-[submodule "exampleCPP"]
-	path = exampleCPP
-	url = https://github.com/epics-base/exampleCPP
 [submodule "p4p"]
 	path = p4p
 	url = https://github.com/mdavidsaver/p4p

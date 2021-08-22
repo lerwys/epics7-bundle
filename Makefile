@@ -4,8 +4,7 @@ DIRS := epics-base \
 	pva2pva \
 	normativeTypesCPP \
 	pvaClientCPP \
-	p4p \
-	exampleCPP
+	p4p
 
 THIS_DIR := $(strip $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST)))))
 
