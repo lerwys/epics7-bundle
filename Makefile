@@ -10,7 +10,7 @@ THIS_DIR := $(strip $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST)))))
 
 .PHONY: $(DIRS) all clean
 
-all: $(DIRS)
+all: $(DIRS) asyn
 
 RELEASE.local: RELEASE.local.in
 	sed -e "s|@THIS_DIR@|${THIS_DIR}|g" RELEASE.local.in > RELEASE.local
@@ -26,4 +26,13 @@ p4p_deps:
 $(DIRS): RELEASE.local p4p_deps
 	# Do git submodule init/update if not available
 	[ -z "$(ls -A ./$@)" ] && git submodule update --init $@
+	make -C $@ -j8
+
+asyn: RELEASE.local p4p_deps
+	[ -z "$(ls -A ./$@)" ] && git submodule update --init $@
+	sed -i \
+		-e 's/^\(IPAC=.*\)/#\1/g' \
+		-e 's/^\(SNCSEQ=.*\)/#\1/g' \
+		-e 's/^\(EPICS_BASE=.*\)/#\1/g' \
+		asyn/configure/RELEASE
 	make -C $@ -j8

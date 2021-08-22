@@ -19,3 +19,6 @@
 [submodule "p4p"]
 	path = p4p
 	url = https://github.com/mdavidsaver/p4p
+[submodule "asyn"]
+	path = asyn
+	url = https://github.com/epics-modules/asyn
