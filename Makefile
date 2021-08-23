@@ -8,9 +8,9 @@ EPICS7_DIRS := epics-base \
 
 THIS_DIR := $(strip $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST)))))
 
-.PHONY: $(EPICS7_DIRS) all clean
+.PHONY: $(EPICS7_DIRS) asyn all clean
 
-all: $(EPICS7_DIRS)
+all: $(EPICS7_DIRS) asyn
 
 RELEASE.local: RELEASE.local.in
 	sed -e "s|@THIS_DIR@|${THIS_DIR}|g" RELEASE.local.in > RELEASE.local
