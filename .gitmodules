@@ -31,3 +31,6 @@
 [submodule "pvDatabaseCPP"]
 	path = pvDatabaseCPP
 	url = https://github.com/epics-base/pvDatabaseCPP
+[submodule "ADSimDetector"]
+	path = ADSimDetector
+	url = https://github.com/areaDetector/ADSimDetector

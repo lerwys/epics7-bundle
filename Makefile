@@ -9,6 +9,7 @@ EPICS7_DIRS := epics-base \
 
 define AREA_DETECTOR_CONFIG_SITE_LOCAL
 WITH_PVA = YES
+BUILD_IOCS = YES
 XML2_EXTERNAL = YES
 XML2_INCLUDE = /usr/include/libxml2
 endef
@@ -21,9 +22,17 @@ define ADCORE_RELEASE_LOCAL
 -include $$(TOP)/../RELEASE.local
 endef
 
+define ADSIMDETECTOR_RELEASE_LOCAL
+-include $$(TOP)/../RELEASE.local
+endef
+
+define ADSIMDETECTOR_IOC_RELEASE_LOCAL
+-include $$(TOP)/../../../RELEASE.local
+endef
+
 THIS_DIR := $(strip $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST)))))
 
-.PHONY: $(EPICS7_DIRS) p4p_deps asyn areaDetector ADCore ADCore_deps all clean
+.PHONY: $(EPICS7_DIRS) p4p_deps asyn areaDetector ADCore ADCore_deps ADSimDetector all clean
 
 all: $(EPICS7_DIRS) asyn areaDetector ADCore
 
@@ -52,7 +61,7 @@ asyn: epics-base RELEASE.local
 		asyn/configure/RELEASE
 	make -C $@ -j8
 
-areaDetector: areaDetectorMeta ADCoreMeta RELEASE.local
+areaDetector: areaDetectorMeta ADCoreMeta ADSimDetectorMeta RELEASE.local
 	make -C $@ -j8
 
 export AREA_DETECTOR_CONFIG_SITE_LOCAL
@@ -70,3 +79,12 @@ export ADCORE_RELEASE_LOCAL
 ADCoreMeta: ADCore_deps
 	[ -z "$(ls -A ./ADCore)" ] && git submodule update --init ADCore
 	echo "$$ADCORE_RELEASE_LOCAL" > ADCore/configure/RELEASE.local
+
+export ADSIMDETECTOR_RELEASE_LOCAL
+export ADSIMDETECTOR_IOC_RELEASE_LOCAL
+ADSimDetectorMeta:
+	# Do git submodule init/update if not available
+	[ -z "$(ls -A ./ADSimDetector)" ] && git submodule update --init ADSimDetector
+	echo "$$ADSIMDETECTOR_RELEASE_LOCAL" > ADSimDetector/configure/RELEASE.local
+	echo "$$ADSIMDETECTOR_IOC_RELEASE_LOCAL" > ADSimDetector/iocs/simDetectorIOC/configure/RELEASE.local
+	echo "$$ADSIMDETECTOR_IOC_RELEASE_LOCAL" > ADSimDetector/iocs/simDetectorNoIOC/configure/RELEASE.local
