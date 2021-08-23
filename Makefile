@@ -1,4 +1,4 @@
-DIRS := epics-base \
+EPICS7_DIRS := epics-base \
 	pvDataCPP \
 	pvAccessCPP \
 	pva2pva \
@@ -8,27 +8,27 @@ DIRS := epics-base \
 
 THIS_DIR := $(strip $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST)))))
 
-.PHONY: $(DIRS) all clean
+.PHONY: $(EPICS7_DIRS) all clean
 
-all: $(DIRS) asyn
+all: $(EPICS7_DIRS)
 
 RELEASE.local: RELEASE.local.in
 	sed -e "s|@THIS_DIR@|${THIS_DIR}|g" RELEASE.local.in > RELEASE.local
 
 clean: RELEASE.local
-	$(foreach dir, $(DIRS), make -C $(dir) clean;)
+	$(foreach dir, $(EPICS7_DIRS), make -C $(dir) clean;)
 
 p4p_deps:
 	# Do git submodule init/update if not available
 	[ -z "$(ls -A ./p4p)" ] && git submodule update --init p4p
 	python3 -m pip install -r p4p/requirements-latest.txt --user
 
-$(DIRS): RELEASE.local p4p_deps
+$(EPICS7_DIRS): RELEASE.local p4p_deps
 	# Do git submodule init/update if not available
 	[ -z "$(ls -A ./$@)" ] && git submodule update --init $@
 	make -C $@ -j8
 
-asyn: RELEASE.local p4p_deps
+asyn: RELEASE.local
 	[ -z "$(ls -A ./$@)" ] && git submodule update --init $@
 	sed -i \
 		-e 's/^\(IPAC=.*\)/#\1/g' \
