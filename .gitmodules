@@ -22,3 +22,12 @@
 [submodule "asyn"]
 	path = asyn
 	url = https://github.com/epics-modules/asyn
+[submodule "areaDetector"]
+	path = areaDetector
+	url = https://github.com/areaDetector/areaDetector
+[submodule "ADCore"]
+	path = ADCore
+	url = https://github.com/areaDetector/ADCore
+[submodule "pvDatabaseCPP"]
+	path = pvDatabaseCPP
+	url = https://github.com/epics-base/pvDatabaseCPP
